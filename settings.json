@@ -1,0 +1,400 @@
+{
+   // The SafeSend website should be stopped when making changes to this file and started again after the changes have been saved.
+   //*****Required if you are using Microsoft 365*****
+   "AppId": "137151dc-131b-40d7-b818-be5e86021be7",
+   "AppSecret": "4ec58078-2e15-469d-aca3-2171318ebc84",
+
+   //*****Required*****
+
+   // EmailProviderUrl
+   // If you are using Microsoft 365, the EmailProviderURL should already be correct
+   // If you are using an Exchange Server, you will need to update that setting as appropriate
+   // The web add-in must be restarted for changes to EmailProviderUrl to take effect.
+   "EmailProviderUrl": "https://outlook.live.com",
+   //"EmailProviderUrl": "https://email.vits.co.uk/",
+
+   // EnablePlatform
+   // Set EnablePlatform to True if you will be using Web, PC, or Mac and False for the platforms you will not be using
+   // If you are using Microsoft 365, Web Add-in works for all 3 available platforms
+   // If you are using Exchange Server, Web Add-in does not work for Outlook for Mac or OWA in Safari
+   // For full details, the latest release notes
+   // If your intent is to use both the PC add-in and the Web add-in, set the PC platform to False to avoid double prompts
+   "EnablePlatform": {
+      "Web": true,
+      "PC": true,
+      "Mac": false
+   },
+
+   // LicenseKey
+   // License in format :yyyy-mm-dd:flags:domains:signature
+   //"LicenseKey": "license needed",
+    "LicenseKey": ":2022-12-04:Trial:vits.co.uk:m1oEwTJGVoo4dJmJfwem8DR8myLycJP33b8iltt0N0Io+L7KsB5ePsy6fI+O2JLeqlFBOh2vZVfyxELMB/LnG0hcQy4yYNNylyYN9l3w0bY5zL237EJ++Zigt3vygT6Qmj/+PILYX5cQBxbR8ZqaddAbbGvzVs31lZiSF5VaTrk=",
+   // One or more domains which are considered safe and will not be confirmed. Enter multiple domains as comma delimited list. For example: [ "domain1.com", "domain2.com" ],
+   "SafeDomains": [ "domain1.com", "domain2.com" ],
+   "EnableSecurityPolicy": true,
+   "EnableSelectAll": true,
+
+   //RetryOnServerConnectionReset  
+   //The default value is 0, meaning that the message will be sent without displaying another dialog if the server connection has been lost and restored.
+   //Set this setting if you would like to process the send request again and display a new confirmation dialog.
+   //0 - Send without retry
+   //1 - Retry if no dialog
+   //2 - Retry always
+   //"RetryOnServerConnectionReset": 2,
+	
+   //*****Commonly used*****
+
+   // DisableSelectAll
+   // Disabled by default, meaning that the 'Select all' checkbox is shown. Enable this setting to disable the 'Select all' checkbox.
+   // "DisableSelectAll": true,
+
+   // DisableSelectAllForLessThanXCheckboxes
+   // The default value is 0. Set this to X to show the 'Select all' checkbox when there are X or more checkboxes visible for the
+   //  user.
+   // "DisableSelectAllForLessThanXCheckboxes": 10,
+   // Logo
+   // Base64 encoded string of png file to use for confirmation logo. LogoFilePath must not be set to use Logo.
+   // "Logo": "",
+
+   // LogoFilePath
+   // File path of png file to use for confirmation logo. Overrides Logo setting if defined. This may be an absolute or relative path. 
+   // The path must be accessible from within the context that the web addin is running and should be json escaped if it contains json
+   // characters. I.E. "C:\\logo.png"
+   // "LogoFilePath": "logo.png",
+
+   // OnlyPopupForAttachments
+   // Disabled by default. Enable this setting to show the SafeSend window only when files are attached and there are external
+   //  recipients in the email.
+   // "OnlyPopupForAttachments": true,
+
+   // PolicyLink
+   // Default value is empty. This value should be the full URL to your information security/email policy.  The string that controls
+   //  what is displayed in the GUI is named StringMainPolicy and it defaults to 'This email should be sent according to the %Group
+   //  Information Security Policy%'. Note the '%' signs that are required around the clickable text.
+   // "PolicyLink": "https://www.",
+
+
+   //*****Data Loss Prevention (DLP)*****
+
+   // ClientKeywordDomainList
+   // Keywords are case insensitive and are matched with word delimiter. Custom RegExps can be used by enclosing the keyword (RegExp) in '#'s.
+   // If you want to hide the domains from the match results, include the : or :AlternateDomainText suffix to display an empty string or your own custom message, respectively.
+   //
+   // Syntax:
+   // Client1Keyword1,Client1Keyword2,…:Client1Domain1,Client1Domain2,…
+   // Client2Keyword1,Client2Keyword2,…:Client2Domain1,Client2Domain2,…:
+   // Client2Keyword1,Client2Keyword2,…:Client2Domain1,Client2Domain2,…:AlternateDomainText
+   // 
+   // Examples:
+   // Apple,AAPL:apple.com
+   // Google,GOOGLE:google.com:
+   // Microsoft,MSFT:microsoft.com:**redacted**
+   //"ClientKeywordDomainList": [ "keywords1:domains1", "keywords2:domains2:", "keywords3:domains3:display3"  ],
+
+   // ContentScanningRules
+   //
+   // Syntax:
+   // [rule_name]:[content_type]:[action]:[regex]
+   //
+   // Options for ‘file_types_to_scan’:
+   // “all”
+   // “all_excl_pdf”
+   // “email_content”
+   // “email_subject”
+   // “file_name”
+   // “csv”, “txt”, “pdf”, “html”, “hxtml”, “doc”, “docx”, “rtf”, “xls”, “xlsx”, “xlsm”, “xlt”, “xltx”, “xltm”, “pptx”, “ppsx”, “pptm”, “ppt”, “pot”, “pps”
+   //
+   // Options for ‘action_upon_match’:
+   // “inform”
+   // “confirm”
+   // “confirm_text”
+   // “deny”
+   //
+   // Examples:
+   // Confidential:all:confirm:(?i)confidential
+   // Confidential:docx,pdf:confirm:(?i)confidential
+   //"ContentScanningRules": [ "rule_name:content_type:action:regex", "rule_name:content_type:action:regex" ],
+
+
+   //*****Advanced*****
+
+   // BCCWarningIfMoreThanX_TOCC_Recipients
+   // Set to 0 by default which makes this setting disabled. Set it to a non-zero value to display an additional checkbox if there are
+   //  more than X recipients of type TO/CC asking the user to confirm if they were not intended for BCC.
+   // "BCCWarningIfMoreThanX_TOCC_Recipients": 10,
+
+   // ClassificationXHeader
+   // Set to "" by default. ClassificationXHeader can be set to e.g. "x-microsoft-classification" or "msip_labels" and
+   //  ClassificationXHeaderValues to e.g. "RESTRICTED,HIGHLY RESTRICTED" or "Sensitivity=HIGHLY RESTRICTED"to trigger SafeSend only
+   //  if the email being sent has a matching classification and the email is being sent externally. This also requires SafeSend to be
+   //  configured to trigger after all other add-ins so that the classification add-in can set its X-header before SafeSend tries to
+   //  read it.
+   // "ClassificationXHeader": "",
+
+   // ClassificationXHeaderValues
+   // Set to "" by default. Specify a comma separated list here with classifications for which SafeSend should be triggered upon.
+   //  Please also see the documentation for ClassificationXHeader.
+   // "ClassificationXHeaderValues": "",
+
+   // ClientKeywordDisableConfirm
+   // Disabled by default. Enable this setting if you do not want to require users to type “confirm” when there are ClientKeyword matches.
+   // "ClientKeywordDisableConfirm": true,
+
+   // ConfirmExternalRecipients
+   // Enabled by default. Disable this setting to not display the SafeSend popup when sending to external recipients.
+   // "ConfirmExternalRecipients": false,
+
+   // DisableConfirmationForTheseSendingEmailAddresses
+   // Disable the confirmation popup when sending from these sending accounts (mailboxes). It is also possible to specify the Display
+   //  Name of an Send Behalf On account in here. Each email address/display name should be separated with a semicolon.
+   // "DisableConfirmationForTheseSendingEmailAddresses": "",
+
+   // DisableConfirmAttachments
+   // Disabled by default, meaning that attachments are confirmed in SafeSend. Enable this setting to hide the attachments from the
+   //  list of items that needs to be confirmed. A warning text saying 'This email has files attached' will still be shown even if
+   //  attachments are not required to be confirmed.
+   // "DisableConfirmAttachments": true,
+
+   // DlpScanPasswordProtectedAttachments
+   // Disabled by default. When enabled users will be prompted to provide the password for attached zip files. If the password is 
+   // provided the contents of the password protected zip file will be scanned.
+   // "DlpScanPasswordProtectedAttachments": true,
+
+   // ExpandListsByDefault
+   // Disabled by default. When enabled grouped domains or distribution lists will be expanded in the confirmation window.
+   // "ExpandListsByDefault": true,
+
+   // ForbiddenLists
+   // Disabled by default. When enabled users will not be able to send to any Outlook or Exchange lists.
+   // "ForbiddenLists": true,
+
+   // ForbiddenRecipients
+   // Users will not be able to send to any email addresses in this list.
+   // "ForbiddenRecipients": [ "user1@email.example", "user2@email.example" ],
+
+   // FooterEnabled
+   // Use this setting to control if the SafeSend footer is visible (Available for PC and Web platforms only).
+   // "FooterEnabled": true,
+
+   // FooterText
+   // Use this setting to set the text in the SafeSend footer.  
+   // "FooterText": "",
+
+   // GroupByDomain
+   // Disabled by default. Use this setting to group all email from the same domain under one checkbox in the confirmation window. Can
+   //  be useful if you have a subset of users who regularly send email to a very large number of recipients.
+   // "GroupByDomain": true,
+
+   // HideRecipientDisplayName
+   // Disabled by default. Enable this setting to hide the display name and only show the email address of each recipient.
+   // "HideRecipientDisplayName": true,
+
+   // LocalizationXlsxPath
+   // The full file path, including extension of the xlsx file. This may be a path to a file on a remote file share. The default
+   //  Localization.xlsx file can be found in the SafeSend install folder.
+   // "LocalizationXlsxPath": "",
+
+   // LoggingEventTypeFilter
+   // Set to 255 by default to enable all event types. Bit 0: email_external, Bit 1: email_internal, Bit 2: email_cancelled.
+   // 0 - None
+   // 1 - email_external
+   // 2 - email_internal
+   // 3 - email_external, email_internal
+   // 4 - email_cancelled
+   // 5 - email_external, email_cancelled
+   // 6 - email_internal, email_cancelled
+   // 7 - email_external, email_internal, email_cancelled
+   // "LoggingEventTypeFilter": 5,
+
+   // LoggingFileLogEnabled
+   // Disabled by default. Enable this setting to log outgoing email activity.
+   // "LoggingFileLogEnabled": true,
+
+   // LoggingFileLogMaxSizeMB
+   // Set to 50 MB by default. Use this setting to change the size that the log file can grow to.
+   // "LoggingFileLogMaxSizeMB": 50,
+
+   // LoggingSyslogHostname
+   // Is empty by default so that Syslog logging is not enabled by default. Set this to the hostname (or IP) of your Syslog server in
+   //  order to start logging user activity to Syslog using UDP.
+   // "LoggingSyslogHostname": "",
+
+   // LoggingSyslogPort
+   // Set to 514 by default. Set this to the UDP port of the Syslog server.
+   // "LoggingSyslogPort": 514,
+
+   // LoggingSyslogUseStrictRFC5424Format
+   // Disabled by default. Enable this to print the NILVALUE for PROCID, MSGID, and STRUCTURED-DATA, and to show the BOM character for
+   //  the UTF-8 message string, all according to the RFC5424 protocol.
+   // "LoggingSyslogUseStrictRFC5424Format": true,
+
+   // MarkEmbeddedImagesAsAttachments
+   // Disabled by default. Enable this setting to mark all embedded images as attachments.
+   // "MarkEmbeddedImagesAsAttachments": true,
+
+   // MarkEmbeddedImagesAsAttachmentsFileSizeLimitKB
+   // Set to 20 by default meaning 20kb. All embedded images under this file size will not be processed if
+   //  MarkEmbeddedImagesAsAttachments = 1
+   // "MarkEmbeddedImagesAsAttachmentsFileSizeLimitKB": 10,
+
+   // OnlyPopupForAttachmentsOrDLPMatch
+   // Disabled by default. Enable this setting to make SafeSend only pop up when there is a DLP match or attachments are included.
+   // "OnlyPopupForAttachmentsOrDLPMatch": true,
+
+   // OnlyPopupForDLPMatch
+   // Disabled by default. Enable this setting to make SafeSend only pop up when there is a DLP match.
+   // "OnlyPopupForDLPMatch": true,
+
+   // OnlyPopupForMultipleExternalDomains
+   // Disabled by default. Enable this setting to only show the SafeSend pop up when there is a DLP match or 2 or more external domains in the
+   //  recipient list.
+   // "OnlyPopupForMultipleExternalDomains": true,
+
+   // PrecheckRecipients
+   // Disabled by default. Enable this setting to pre-check each recipient in the SafeSend window. The user will then only have to
+   //  click the ‘Send’ button to send the email.
+   // "PrecheckRecipients": true,
+
+   // ShowAttachmentsSeparator
+   // The default value after installation is enabled, meaning that SafeSend will display an attachments separator in the GUI. Set
+   //  this to disabled if you would like to hide this separator.
+   // "ShowAttachmentsSeparator": true,
+
+   // ShowFromAddress
+   // The default value after installation is disabled, meaning that SafeSend will not display the email from address in the SafeSend
+   //  window. Set this to enabled if you would like to display the email from address.
+   // "ShowFromAddress": true,
+
+   // ShowSubjectMode
+   // The default value after installation is 0, meaning that SafeSend will not display the email subject in the SafeSend window. Set
+   //  this to 1 if you want SafeSend to display the email subject only for meeting invitations/updates. Set this to 2 if you want
+   //  SafeSend to display the email subject on all emails, meeting invitations/updates and task requests.
+   // "ShowSubjectMode": 0,
+
+   // SortRecipientsAndFiles
+   // The default value after installation is enabled, meaning that SafeSend will sort recipients based on email domain within each
+   //  TO/CC/BCC group, and it will also sort files based on file names. Set this to disabled if you would like to disable this
+   //  sorting.
+   // "SortRecipientsAndFiles": true,
+
+   // TreatMatchingEmailsAsExternal
+   // Use this regular expression to treat matching emails as external. This can be used to treat a specific set of distribution lists
+   //  as as external even though they have an internal email address. Will display 'Confirm External Recipients' in title window for
+   //  matching email addresses. You can set this to e.g. 'external-.*@yourdomain.com' and it will cause SafeSend to popup for all
+   //  emails, including Exchange Distribution lists, being sent to 'external-%s@yourdomain.com' where %s is an arbitrary string.
+   // "TreatMatchingEmailsAsExternal": "",
+
+   // TreatMatchingEmailsAsUnsafe
+   // Use this regular expression to treat matching emails as unsafe. Will display 'Confirm Recipients' in title window for matching
+   //  email addresses. Use this if you have an internal email that you wish to treat as unsafe. You can set this to e.g.
+   //  'allemployees@yourdomain.com|allemployees-officeX@yourdomain.com' and it will cause SafeSend to popup for all emails, including
+   //  Exchange Distribution lists, being sent to either 'allemployees@yourdomain.com' or 'allemployees-officeX@yourdomain.com'.
+   // "TreatMatchingEmailsAsUnsafe": "",
+
+   // TreatMatchingExchangeDLNamesAsExternal
+   // Use this regular expression to treat matching distribution list names as external. Will display 'Confirm External Recipients' in
+   //  title window for matching email addresses. This can be used to treat a specific set of distribution lists as as external even
+   //  though they have an internal email address. You can set this to e.g. 'External – .*' and it will cause SafeSend to popup for
+   //  all Exchange Distribution lists with names matching 'External – %s' where %s is an arbitrary string. This setting is case
+   //  insensitive.
+   // "TreatMatchingExchangeDLNamesAsExternal": "",
+
+   // TreatMatchingExchangeDLNamesAsUnsafe
+   // Use this regular expression to treat matching distribution list names as unsafe. Will display 'Confirm Recipients' in title
+   //  window for matching email addresses. You can set this to e.g. 'All Employees|All Employees Office X' and it will cause SafeSend
+   //  to popup for all emails being sent to either 'All Employees' or 'All Employees Office X'. This setting is case insensitive.
+   // "TreatMatchingExchangeDLNamesAsUnsafe": "",
+
+   // TreatMatchingUnresolvedRecipientsAsInternal
+   // Use this semicolon separated list to define Display Names of recipients that automatically should be treated as internal if they
+   //  are marked as unresolved by SafeSend. This can happen if there are Exchange contacts who do not have an email address assigned
+   //  to them but that you still like to automatically treat as internal. It is recommended to set UnresolvedRecipientRetryCount to 0
+   //  if all users are using Cached Mode as this will speed up managing unresolved recipients.
+   // "TreatMatchingUnresolvedRecipientsAsInternal": "",
+
+   // TriggerEncryptionDefaultOption
+   // The default value after installation is 0, meaning that SafeSend will require the user's input whether to encrypt or not before
+   //  the 'Send' button becomes visible. Set this to 1 if you want the default option to be 'Yes', or set it to 2 if you want the
+   //  default option to be 'No'.
+   // "TriggerEncryptionDefaultOption": 1,
+
+   // TriggerEncryptionMode
+   // The default value after installation is 0, meaning that SafeSend will not ask the users about encryption. Set this to 1 if you
+   //  want SafeSend to ask users to encrypt only when files are attached. Set this to 2 if you want SafeSend to ask for encryption
+   //  when the DLP Content Scanning has found sensitive content. Set this to 3 if you always want SafeSend to ask users to encrypt.
+   // "TriggerEncryptionMode": 3,
+
+   // TriggerEncryptionSubjectString
+   // This is the string that can be used in the subject line to trigger email encryption on the mail server. Typically set to
+   //  '[secure]' or '[encrypt]'.
+   // "TriggerEncryptionSubjectString": "",
+
+   // TriggerEncryptionXHeader
+   // This is the string that is added as a X-header if encryption is selected. It has the following format 'header:value'.
+   // "TriggerEncryptionXHeader": "",
+
+   // The default value after installation is 0, meaning that SafeSend will take no additional action for attachments that are 
+   // unencrypted. Set this to 1 if you want SafeSend to display a notification when there are unencrypted attachments. Set this to
+   // 2 to display an additional check box when there are unencrypted attachments. Set this to 3 to prevent sending the message when
+   // there are unencrypted attachments.
+   // "UnprotectedAttachmentsMode": 1,
+
+   // UseDomainColorCoding
+   // The default value after installation is enabled, meaning that each recipient domain is displayed in a different color. This 
+   // makes it easier to spot outliers added by mistake
+   // "UseDomainColorCoding": true,
+
+   // UseLocalizedLanguage
+   // Enable this setting to match the SafeSend language with the Outlook language.
+   // "UseLocalizedLanguage": true,
+
+   // UseLocalizedLanguageForceLanguage
+   // Set this to force a lanaguage other than English. SafeSend will then be displayed in this language instead of mathing the
+   //  language of Outlook. In order for this setting to work, UseLocalizedLanguage must also be set to true. Set to e.g. fr,de,ja,es
+   //  etc. Consider also setting UseLocalizedLanguageGPOOverrideLanguage to the language of choice so that the localized strings can
+   //  also be controlled via GPO.
+   // "UseLocalizedLanguageForceLanguage": "",
+
+   // UseSafeDomainsAsBlacklist
+   // Enable this setting to use the safe domain list as a black-list instead of a white-list.
+   // "UseSafeDomainsAsBlacklist": true,
+
+
+
+   //*****Special cases*****
+
+   // AddXHeader
+   // Disabled by default. Enable this setting to add the string ‘x-header: SafeSend’ to all emails. This can be used to verify that
+   //  all computers have SafeSend installed. Computers without SafeSend installed can potentially be identified by creating a
+   //  transport rule on the Exchange Server to reject outgoing emails if they do not have the x-header.
+   // "AddXHeader": true,
+
+   // ContentScanningMaxFileSize
+   // Set to 10MiB by default. Change this setting to limit the size of attachments that will be scanned by DLP.
+   // "ContentScanningMaxFileSize": 10485760,
+
+   // ContentScanningMaxNrMatchesBeforeTryingToGroupByAttachment
+   // Set to 30 by default. Change this setting to edit the number of DLP results in the output table before SafeSend will try to
+   //  group them by attachment. This is to avoid the table being too long when the same result is found in a large number of files.
+   // "ContentScanningMaxNrMatchesBeforeTryingToGroupByAttachment": 30,
+
+   // ContentScanningTimeoutMS
+   // 10000 by default. Change this setting to edit the default timeout value in milliseconds for the content scanning feature.
+   // "ContentScanningTimeoutMS": 10000,
+
+   // DebugLogging
+   // Disabled by default. Enable this setting to log additional debug information to a temporary file on the user’s computer. The log
+   //  file can be opened from the Add-in options dialog (File->Options->Add-ins->Add-in Options…)
+   // "DebugLogging": true,
+
+   // ProcessMaxNrRecipients
+   // The default value after installation is 100. Enable this setting to change how many recipients, which are not part of any lists,
+   //  SafeSend should process. Setting this value to 0 processes ALL recipients. The drawback of having no limit is that SafeSend can
+   //  ‘hang’ Outlook for a longer time when emailing several hundred contacts. It is not recommended to change this value.
+   // "ProcessMaxNrRecipients": 100,
+
+
+
+   // Dummy value to avoid comma warnings above
+   "end": "of settings"
+}
